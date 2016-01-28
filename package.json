@@ -1,0 +1,19 @@
+{
+  "name": "floyd-api",
+  "version": "1.0.0",
+  "description": "Floyd API",
+  "main": "index.js",
+  "keywords": [
+    "swagger"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.9.*",
+    "node-qiniu":"6.1.0",
+    "qiniu":"6.1.9",
+    "mongoose": "*"
+  }
+}

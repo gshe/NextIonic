@@ -1,0 +1,178 @@
+---
+swagger: "2.0"
+info:
+  description: "Floyd API"
+  version: "1.0.0"
+  title: "Floyd API"
+host: "floyd-gshenodejsex.dotcloudapp.com"
+basePath: "/v1"
+schemes:
+- "https"
+produces:
+- "application/json"
+paths:
+  /associateUserWithWeiboId:
+    get:
+      tags:
+      - "Customer"
+      summary: "associate user information"
+      description: "associate information."
+      operationId: "associateUserWithWeiboIdGet"
+      parameters:
+      - name: "wbUserId"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/UserInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customer"
+  /updateUserBirthday:
+    get:
+      tags:
+      - "Customer"
+      summary: "update user birthday"
+      description: "user information."
+      operationId: "updateUserBirthdayGet"
+      parameters:
+      - name: "userId"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "userBirthday"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/UserInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customer"
+  /updateUserName:
+    get:
+      tags:
+      - "Customer"
+      summary: "update user name"
+      description: "user information."
+      operationId: "updateUserNameGet"
+      parameters:
+      - name: "userId"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "userName"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/UserInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customer"
+  /uploadToken:
+    get:
+      tags:
+      - "File"
+      summary: "qiniu uoload token"
+      description: "get qiniu upload token."
+      operationId: "uploadTokenGet"
+      parameters: []
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/TokenInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "File"
+  /userById:
+    get:
+      tags:
+      - "Customer"
+      summary: "get user information"
+      description: "user information."
+      operationId: "userByIdGet"
+      parameters:
+      - name: "userId"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/UserInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customer"
+  /userByWeiboId:
+    get:
+      tags:
+      - "Customer"
+      summary: "get user information"
+      description: "user information."
+      operationId: "userByWeiboIdGet"
+      parameters:
+      - name: "wbUserId"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/UserInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customer"
+definitions:
+  TokenInfo:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+  UserInfo:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      birthday:
+        type: "string"
+      name:
+        type: "string"
+      weiboId:
+        type: "string"
+      weiboToken:
+        type: "string"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"
