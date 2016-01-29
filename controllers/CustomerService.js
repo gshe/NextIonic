@@ -87,3 +87,19 @@ exports.userByWeiboIdGet = function(args, res, next) {
     }
   });
 }
+
+exports.updateUserAvatarGet = function(args, res, next) {
+    /**
+     * parameters expected in the args:
+     * userId (String)
+     * avatarKey (String)
+     * avatarHash (String)
+     **/
+    var userId = args.userId.value;
+    var avatar = {avatarKey:args.avatarKey.value, avatarHash:args.avatarHash.value};
+
+    UserModel.findByIdAndUpdate(userId, avatar, function(err, doc){
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(doc, null, 2));
+    });
+}

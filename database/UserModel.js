@@ -8,8 +8,10 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     name: String,
     birthday: String,
-    weiboId : String,
-    weiboToken : String,
+    weiboId: String,
+    weiboToken: String,
+    avatarKey: String,
+    avatarHash: String,
     created: {type:Date, default:Date.now},
     modified: {type:Date, default:Date.now}
 });

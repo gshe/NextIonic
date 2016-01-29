@@ -10,6 +10,10 @@ module.exports.associateUserWithWeiboIdGet = function associateUserWithWeiboIdGe
   Customer.associateUserWithWeiboIdGet(req.swagger.params, res, next);
 };
 
+module.exports.updateUserAvatarGet = function updateUserAvatarGet (req, res, next) {
+  Customer.updateUserAvatarGet(req.swagger.params, res, next);
+};
+
 module.exports.updateUserBirthdayGet = function updateUserBirthdayGet (req, res, next) {
   Customer.updateUserBirthdayGet(req.swagger.params, res, next);
 };

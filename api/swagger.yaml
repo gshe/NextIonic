@@ -4,10 +4,10 @@ info:
   description: "Floyd API"
   version: "1.0.0"
   title: "Floyd API"
-host: "floyd-gshenodejsex.dotcloudapp.com"
+host: "localhost:3000"
 basePath: "/v1"
 schemes:
-- "https"
+- "http"
 produces:
 - "application/json"
 paths:
@@ -20,6 +20,36 @@ paths:
       operationId: "associateUserWithWeiboIdGet"
       parameters:
       - name: "wbUserId"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/UserInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customer"
+  /updateUserAvatar:
+    get:
+      tags:
+      - "Customer"
+      summary: "update user avatar"
+      description: "user information."
+      operationId: "updateUserAvatarGet"
+      parameters:
+      - name: "userId"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "avatarKey"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "avatarHash"
         in: "query"
         required: true
         type: "string"
@@ -156,7 +186,7 @@ definitions:
   UserInfo:
     type: "object"
     properties:
-      id:
+      _id:
         type: "string"
       birthday:
         type: "string"
@@ -166,6 +196,16 @@ definitions:
         type: "string"
       weiboToken:
         type: "string"
+      avatarKey:
+        type: "string"
+      avatarHash:
+        type: "string"
+      created:
+        type: "string"
+        format: "date-time"
+      modified:
+        type: "string"
+        format: "date-time"
   Error:
     type: "object"
     properties:
