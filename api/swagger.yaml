@@ -11,10 +11,86 @@ schemes:
 produces:
 - "application/json"
 paths:
+  /addPhotoToAlbum:
+    get:
+      tags:
+      - "IAlbum"
+      summary: "add photo to album"
+      description: "add photo to album."
+      operationId: "addPhotoToAlbumGet"
+      parameters:
+      - name: "albumId"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "photoName"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "photoUrl"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/PhotoInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "IAlbum"
+  /albumById:
+    get:
+      tags:
+      - "IAlbum"
+      summary: "get album info by id"
+      description: "album information."
+      operationId: "albumByIdGet"
+      parameters:
+      - name: "albumId"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/AlbumInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "IAlbum"
+  /allAlbums:
+    get:
+      tags:
+      - "IAlbum"
+      summary: "get all user albums"
+      description: "album information."
+      operationId: "allAlbumsGet"
+      parameters:
+      - name: "userId"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AlbumInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "IAlbum"
   /associateUserWithWeiboId:
     get:
       tags:
-      - "Customer"
+      - "ICustomer"
       summary: "associate user information"
       description: "associate information."
       operationId: "associateUserWithWeiboIdGet"
@@ -32,11 +108,69 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Customer"
+      x-swagger-router-controller: "ICustomer"
+  /createAlbum:
+    get:
+      tags:
+      - "IAlbum"
+      summary: "create a new album"
+      description: "create album."
+      operationId: "createAlbumGet"
+      parameters:
+      - name: "userId"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "albumName"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "albumDesc"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "cover"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            $ref: "#/definitions/AlbumInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "IAlbum"
+  /photosInAlbum:
+    get:
+      tags:
+      - "IAlbum"
+      summary: "get all photos in album"
+      description: "all photos in album."
+      operationId: "photosInAlbumGet"
+      parameters:
+      - name: "albumId"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profile information for a user"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PhotoInfo"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "IAlbum"
   /updateUserAvatar:
     get:
       tags:
-      - "Customer"
+      - "ICustomer"
       summary: "update user avatar"
       description: "user information."
       operationId: "updateUserAvatarGet"
@@ -62,11 +196,11 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Customer"
+      x-swagger-router-controller: "ICustomer"
   /updateUserBirthday:
     get:
       tags:
-      - "Customer"
+      - "ICustomer"
       summary: "update user birthday"
       description: "user information."
       operationId: "updateUserBirthdayGet"
@@ -88,11 +222,11 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Customer"
+      x-swagger-router-controller: "ICustomer"
   /updateUserName:
     get:
       tags:
-      - "Customer"
+      - "ICustomer"
       summary: "update user name"
       description: "user information."
       operationId: "updateUserNameGet"
@@ -114,11 +248,11 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Customer"
+      x-swagger-router-controller: "ICustomer"
   /uploadToken:
     get:
       tags:
-      - "File"
+      - "IFile"
       summary: "qiniu uoload token"
       description: "get qiniu upload token."
       operationId: "uploadTokenGet"
@@ -132,11 +266,11 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "File"
+      x-swagger-router-controller: "IFile"
   /userById:
     get:
       tags:
-      - "Customer"
+      - "ICustomer"
       summary: "get user information"
       description: "user information."
       operationId: "userByIdGet"
@@ -154,11 +288,11 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Customer"
+      x-swagger-router-controller: "ICustomer"
   /userByWeiboId:
     get:
       tags:
-      - "Customer"
+      - "ICustomer"
       summary: "get user information"
       description: "user information."
       operationId: "userByWeiboIdGet"
@@ -176,7 +310,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Customer"
+      x-swagger-router-controller: "ICustomer"
 definitions:
   TokenInfo:
     type: "object"
@@ -199,6 +333,40 @@ definitions:
       avatarKey:
         type: "string"
       avatarHash:
+        type: "string"
+      created:
+        type: "string"
+        format: "date-time"
+      modified:
+        type: "string"
+        format: "date-time"
+  AlbumInfo:
+    type: "object"
+    properties:
+      _id:
+        type: "string"
+      name:
+        type: "string"
+      desc:
+        type: "string"
+      cover:
+        type: "string"
+      created:
+        type: "string"
+        format: "date-time"
+      modified:
+        type: "string"
+        format: "date-time"
+  PhotoInfo:
+    type: "object"
+    properties:
+      _id:
+        type: "string"
+      name:
+        type: "string"
+      desc:
+        type: "string"
+      url:
         type: "string"
       created:
         type: "string"

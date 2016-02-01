@@ -1,4 +1,6 @@
 'use strict';
+require('date-utils');
+
 var UserModel = require('../database/UserModel').UserModel;
 exports.associateUserWithWeiboIdGet = function(args, res, next) {
   /**
@@ -17,6 +19,8 @@ exports.associateUserWithWeiboIdGet = function(args, res, next) {
             }else{
                var user = new UserModel();
                 user.weiboId = wbUserId;
+                user.created = new Date();
+                user.modified = new Date();
                 user.save(function(err2, newItem) {
                     if (err2) {
                         res.end();
@@ -37,7 +41,7 @@ exports.updateUserBirthdayGet = function(args, res, next) {
    **/
 
     var userId = args.userId.value;
-    var userBirthday = {birthday:args.userBirthday.value};
+    var userBirthday = {birthday:args.userBirthday.value, modified:new Date()};
     UserModel.findByIdAndUpdate(userId, userBirthday, function(err, doc){
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(doc, null, 2));
@@ -51,7 +55,7 @@ exports.updateUserNameGet = function(args, res, next) {
    * userName (String)
    **/
    var userId = args.userId.value;
-    var userName = {name:args.userName.value};
+    var userName = {name:args.userName.value, modified:new Date()};
     UserModel.findByIdAndUpdate(userId, userName, function(err, doc){
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(doc, null, 2));
@@ -96,7 +100,7 @@ exports.updateUserAvatarGet = function(args, res, next) {
      * avatarHash (String)
      **/
     var userId = args.userId.value;
-    var avatar = {avatarKey:args.avatarKey.value, avatarHash:args.avatarHash.value};
+    var avatar = {avatarKey:args.avatarKey.value, avatarHash:args.avatarHash.value, modified:new Date()};
 
     UserModel.findByIdAndUpdate(userId, avatar, function(err, doc){
         res.setHeader('Content-Type', 'application/json');

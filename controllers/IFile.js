@@ -3,9 +3,9 @@
 var url = require('url');
 
 
-var File = require('./FileService');
+var IFile = require('./IFileService');
 
 
 module.exports.uploadTokenGet = function uploadTokenGet (req, res, next) {
-  File.uploadTokenGet(req.swagger.params, res, next);
+  IFile.uploadTokenGet(req.swagger.params, res, next);
 };
