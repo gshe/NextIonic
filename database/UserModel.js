@@ -3,7 +3,7 @@
  */
 
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/floyd');
+mongoose.connect('mongodb://localhost/floyd');
 var Schema = mongoose.Schema;
 var userSchema = new Schema({
     name: String,
@@ -31,6 +31,6 @@ var photoSchema = new Schema({
     created: {type:Date, default:Date.now},
     modified: {type:Date, default:Date.now}
 });
-exports.PhotoModel = db.model('photo', photoSchema); 
-exports.AlbumModel = db.model('album', albumSchema); 
-exports.UserModel = db.model('users', userSchema); //  与users集合关联
+exports.PhotoModel = mongoose.model('photo', photoSchema); 
+exports.AlbumModel = mongoose.model('album', albumSchema); 
+exports.UserModel = mongoose.model('users', userSchema); //  与users集合关联
