@@ -1,0 +1,56 @@
+<ion-view view-title="User">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="logout()" ng-if="curUser && loginname === curUser.loginname">退出</button>
+  </ion-nav-buttons>
+  <ion-content class="has-header user">
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()" >
+    </ion-refresher>
+    <ion-list>
+      <ion-item class="item-divider item-gap">
+        社区信息
+      </ion-item>
+      <ion-item class="item-avatar">
+        <img ng-src="{{user.avatar_url}}" ng-if="!settings.saverMode">
+        <span>{{user.loginname}}</span>
+        <span>{{user.score}}积分</span>
+        <p>
+        注册于：{{user.create_at | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}
+        </p>
+      </ion-item>
+      <ion-item class="item-divider item-gap" ng-if="user.recent_topics.length > 0">
+        最近主题
+      </ion-item>
+      <ion-item class="item-avatar"
+        ng-repeat="topic in user.recent_topics"
+        href="#/app/topic/{{topic.id}}">
+        <img ng-src="{{topic.author.avatar_url}}" ng-if="!settings.saverMode" reset-img>
+        <h2>{{topic.title}}</h2>
+        <p class="summary">
+          {{topic.author.loginname}}
+          <span class="item-note ago" am-time-ago="topic.last_reply_at">
+          </span>
+        </p>
+      </ion-item>
+      <ion-item class="item-divider item-gap" ng-if="user.recent_topics.length == 0">
+        暂无主题
+      </ion-item>
+      <ion-item class="item-divider item-gap" ng-if="user.recent_replies.length > 0">
+        最近回复
+      </ion-item>
+      <ion-item class="item-avatar"
+        ng-repeat="reply in user.recent_replies"
+        href="#/app/topic/{{reply.id}}">
+        <img ng-src="{{reply.author.avatar_url}}" ng-if="!settings.saverMode" reset-img>
+        <h2>{{reply.title}}</h2>
+        <p class="summary">
+          {{reply.author.loginname}}
+          <span class="item-note ago" am-time-ago="reply.last_reply_at">
+          </span>
+        </p>
+      </ion-item>
+      <ion-item class="item-divider item-gap" ng-if="user.recent_replies.length == 0">
+        暂无回复
+      </ion-item>
+    <ion-list>
+  </ion-content>
+</ion-view>
