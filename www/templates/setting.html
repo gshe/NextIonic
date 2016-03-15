@@ -1,5 +1,24 @@
-<ion-view view-title="Setting">
+<ion-view view-title="设置">
   <ion-content>
-    <h1>Setting</h1>
+    <ion-list>
+      <ion-item class="item-divider">
+        关于
+      </ion-item>
+
+      <ion-item>
+        当前版本
+        <span class="item-note">{{ENV.version}}</span>
+      </ion-item>
+      <ion-item ng-click="feedback()">
+        意见反馈
+        <span class="item-note">Email</span>
+      </ion-item>
+      <ion-item onclick="InAppBrowser.open('http://www.cnblogs.com/gshe/', '_blank', 'location=yes')">
+        关于作者
+      </ion-item>
+      <ion-item onclick="InAppBrowser.open('http://ionichina.com/about', '_blank', 'location=yes')">
+        关于InoicChina
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

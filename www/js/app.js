@@ -19,6 +19,15 @@ angular.module('starter', ['ionic', 'angularMoment', 'starter.controllers', 'sta
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    if(window.cordova) {
+      window.InAppBrowser = window.cordova.InAppBrowser;
+    } else {
+      window.InAppBrowser = {
+        open: function(url, target, params) {
+          window.open(url);
+        }
+      };
+    }
   });
 })
 
@@ -73,7 +82,7 @@ angular.module('starter', ['ionic', 'angularMoment', 'starter.controllers', 'sta
       views: {
         'menuContent': {
           templateUrl: 'templates/setting.html',
-          controller: 'AppCtrl'
+          controller: 'SettingCtrl'
         }
       }
     });
