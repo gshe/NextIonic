@@ -1,5 +1,31 @@
 <ion-view view-title="Message">
-  <ion-content>
-    <h1>尼玛，现在还没有一个人回复我！</h1>
-  </ion-content>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-compose" ng-if="message.hasnot_read_messages.length > 0"
+                ng-click="onMarkAllRead()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item class="item-divider">
+                未读消息
+            </ion-item>
+            <ion-item ng-if="message.hasnot_read_messages.length == 0">
+                暂无消息
+            </ion-item>
+            <ion-item ng-repeat="msg in message.hasnot_read_messages">
+                {{msg.author.loginname}} {{msg.type}} {{msg.topic.title}}
+            </ion-item>
+            <ion-item class="item-divider">
+                已读消息
+            </ion-item>
+            <ion-item ng-if="message.has_read_messages.length == 0">
+                暂无消息
+            </ion-item>
+            <ion-item ng-repeat="msg in message.has_read_messages">
+                {{msg.author.loginname}} {{msg.type}} {{msg.topic.title}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>

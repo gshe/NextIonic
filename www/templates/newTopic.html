@@ -1,28 +1,33 @@
 <ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">新主题</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="onHideNewTopic()">关闭</button>
-    </div>
-    <div class="buttons">
-      <button class="button button-clear button-positive" ng-click="onSaveTopic()" ng-disabled="newTopicData.title.length < 10 || newTopicData.content=''">提交</button>
-    </div>
-  </ion-header-bar>
-  <ion-content class="topic-create">
-    <form>
-      <div class="list">
-        <label class="item item-input item-select">
-          <select ng-model="newTopicData.tab" class="topic-tabs">
-             <option ng-if="tab.value != undefined && tab.value != 'all'" ng-repeat="tab in tabs" value="{{tab.value}}">{{tab.label}}</option>
-          </select>
-        </label>
-        <label class="item item-input">
-          <input type="text" ng-model="newTopicData.title" placeholder="请输入标题"/>
-        </label>
-        <label class="item item-input">
-          <textarea class="content" ng-model="newTopicData.content" placeholder="内容" rows="5"/>
-        </label>
-      </div>
-    </form>
-  </ion-content>
+    <ion-header-bar>
+        <h1 class="title">新主题</h1>
+
+        <div class="buttons">
+            <button class="button button-clear" ng-click="onHideNewTopic()">关闭</button>
+        </div>
+        <div class="buttons">
+            <button class="button button-clear button-positive" ng-click="onSaveTopic()"
+                    ng-disabled="newTopicData.title.length < 10 || newTopicData.content ===''">提交
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="topic-create">
+        <form>
+            <div class="list">
+                <label class="item item-input item-select">
+                    <select ng-model="newTopicData.tab" class="topic-tabs">
+                        <option ng-if="tab.value != undefined && tab.value != 'all'" ng-repeat="tab in tabs"
+                                value="{{tab.value}}">{{tab.label}}
+                        </option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <input type="text" ng-model="newTopicData.title" placeholder="请输入标题"/>
+                </label>
+                <label class="item item-input">
+                    <textarea class="content" ng-model="newTopicData.content" placeholder="内容" rows="5"/>
+                </label>
+            </div>
+        </form>
+    </ion-content>
 </ion-modal-view>

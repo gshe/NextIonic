@@ -13,19 +13,23 @@ angular.module('starter.services')
   return [
     {
       value: 'all',
-      label: '最新'
+      label: '最新',
+      image: 'ion-home'
     },
     {
       value: 'share',
-      label: '分享'
+      label: '分享',
+      image: 'ion-share'
     },
     {
       value: 'ask',
-      label: '问答'
+      label: '问答',
+      image: 'ion-help'
     },
     {
       value: 'job',
-      label: '招聘'
+      label: '招聘',
+      image: 'ion-coffee'
     },
     {
       value: undefined,

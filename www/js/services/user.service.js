@@ -4,14 +4,14 @@ angular.module('starter.services')
 .factory('User', function(ENV, $log, $resource, $q, ENV, Storage) {
   var api = ENV.domain + ENV.api;
   var storageKey = 'user';
-  var tokenResouce = $resource(api + '/accesstoken');
+  var tokenResource = $resource(api + '/accesstoken');
   var userResource = $resource(api + '/user/:loginname', {loginname:''});
   var curUser = Storage.get(storageKey) || {};
 
   return {
     login: function(accessToken){
        var $this = this;
-       return tokenResouce.save({accesstoken:accessToken}, null, function(response){
+       return tokenResource.save({accesstoken:accessToken}, null, function(response){
          curUser.accesstoken = accessToken;
          $this.get(response.loginname).$promise.then(function(r){
           curUser = r.data;
